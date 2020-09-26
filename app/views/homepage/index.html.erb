@@ -11,7 +11,7 @@
     	<form action="/show-book" method="POST" id="listing_form">
       <% @result["items"].each do |book| %>
         <tr>
-          <td onclick="show_detail('<%=book["volumeInfo"]["imageLinks"]["thumbnail"]%>','<%=book["volumeInfo"]["subtitle"]%>','<%=book["id"]%>')"><%= book["volumeInfo"]["title"] %></td>
+          <td onclick="show_detail('<%=book["volumeInfo"]["imageLinks"]["thumbnail"]%>','<%=book["volumeInfo"]["subtitle"]%>','<%=book["id"]%>')" style="cursor:pointer;"><%= book["volumeInfo"]["title"] %></td>
         </tr>
       <% end %>
     </form>
