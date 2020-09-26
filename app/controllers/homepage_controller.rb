@@ -13,6 +13,7 @@ class HomepageController < ApplicationController
 			result = result["items"].select{|a| a["id"] == params["book_id"]}.last
 			if result.present?
 				params["image_link"] = result["volumeInfo"]["imageLinks"]["thumbnail"]
+				params["subtitle"] = result["volumeInfo"]["subtitle"]
 			end
 		end
 	end

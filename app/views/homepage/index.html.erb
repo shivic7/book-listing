@@ -1,22 +1,25 @@
 <script asyn src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <h1 style="font-size: 35px;text-align: center;">Listing Books</h1>
-<table>
-  <thead>
-    <tr>
-      <th style="font-size: 30px; color: blue;">Title</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  	<form action="/show-book" method="POST" id="listing_form">
-    <% @result["items"].each do |book| %>
+<%if @result.present?%>
+  <table>
+    <thead>
       <tr>
-        <td onclick="show_detail('<%=book["volumeInfo"]["imageLinks"]["thumbnail"]%>','<%=book["volumeInfo"]["subtitle"]%>','<%=book["id"]%>')"><%= book["volumeInfo"]["title"] %></td>
+        <th style="font-size: 30px; color: blue;">Title</th>
       </tr>
-    <% end %>
-  </form>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    	<form action="/show-book" method="POST" id="listing_form">
+      <% @result["items"].each do |book| %>
+        <tr>
+          <td onclick="show_detail('<%=book["volumeInfo"]["imageLinks"]["thumbnail"]%>','<%=book["volumeInfo"]["subtitle"]%>','<%=book["id"]%>')"><%= book["volumeInfo"]["title"] %></td>
+        </tr>
+      <% end %>
+    </form>
+    </tbody>
+  </table>
+<%else%>
+  <p>Sorry!!! No Books are available. Please come back later...</p>
+<%end%>
 <script type="text/javascript">
 	function show_detail(image_link, subtitle, book_id){
 		$('#listing_form').append('<input type="text" name="image_link" value="'+image_link+'" />');
